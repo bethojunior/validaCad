@@ -1,0 +1,73 @@
+<html>
+        <head>
+            <meta charset="UTF-8">
+            <link href="webfiles/Materialize/css/materialize.css" rel="stylesheet" />
+            <link href="webfiles/css/index.css" rel="stylesheet" />
+            <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+            <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+            <script type="text/javascript" src="cordova.js"></script>
+            <script src="webfiles/js/controllers/include.js"></script>
+            
+            <script src="webfiles/js/libs/jquery.js"></script>
+            <script src="webfiles/Materialize/js/materialize.js"></script>
+            <!--script src="webfiles/js/controllers/camera.js"></script-->
+            <script src="webfiles/js/controllers/index.js"></script>
+            <script>
+                w3.includeHTML();
+            </script>
+            <script>
+            $(document).ready(function(){
+                $('.modal').modal();
+            });
+            
+            </script>
+            <script>
+                $(document).ready(function() {
+                $('select').material_select();
+                });
+            </script>
+
+        </head>
+        <body>
+            <header class="row">
+                <div class="col s2"></div>
+                <div class="col s8 divImagem">
+                    <form enctype="multipart/form-data">
+                        <div class="divForm" onclick="app.capturePhoto()">
+                            <i id="getOut" class="large material-icons">camera_alt</i>
+                            <img class="col s12" id="myImage">
+                            <input type="file" id="imagemCad">
+                        </div>
+
+                        <div class="col s12">
+                            <label class="nameId">ID</label>
+                            <input maxlength="12" class="nameId border" type="number" id="idCliente">
+                        </div>
+
+                        <div class="divParceiros">
+                            <span class="spanDescricao">Parceiros</span>    
+                            <div class="input-field col s12">
+                                <select id="parceria">
+                                    <option value="artcidada">Art Cidadã</option>
+                                    <option value="acold">Acold</option>
+                                    <option vlaue="apae">Apae</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <label class="nameId">R$</label>
+                            <input class="col s12 nameId border" id="valor" placeholder="Valor" type="number">
+                            <span id="teste"></span>
+                        </div>
+    
+                        <input class="col s12 btn" type="button" id="enviar" value="GRAVAR">
+                    </form>    
+                </div>
+                <div class="col s2"></div>
+            </header>
+    
+            <div w3-include-html="webfiles/views/modal.html"></div> 
+
+        </body>
+    </html>

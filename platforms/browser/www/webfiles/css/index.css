@@ -1,0 +1,41 @@
+i {
+    margin-top: 37%;
+    width: 100%!important;
+}
+
+.divForm {
+    text-align: center;
+    border: solid 1px gray!important;
+    min-height: 40%!important;
+    margin-bottom: 5%;
+    margin-top: 10%;
+}
+
+.border{
+    border: solid 1px black!important;
+    border-radius: 7px!important;
+}
+
+.nameId {
+    text-align: center;
+    margin-left: 43%;
+    font-weight: bold;
+    font-size: 15pt;
+}
+
+.spanDescricao {
+    text-align: center;
+    margin-left: 33%;
+    font-weight: bold;
+    font-size: 15pt;
+}
+
+#imagem {
+    display: none;
+    width: 100%!important;
+    text-align: center;
+}
+
+#imagemCad {
+    display: none;
+}
