@@ -18,10 +18,15 @@ var app = {
             var image = document.getElementById('myImage');
             image.src = imageURI;
             document.getElementById("imagemCad").value = imageURI;
+            
         }
         
         function onFail(message) {
             alert('Failed because: ' + "Error");
+        }
+
+        function clearCache(){
+            navigator.camera.cleanup();
         }
     }
     

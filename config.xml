@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget id="io.cordova.hellocordova" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>Art cidadã</name>
+    <name>Sinergia foto</name>
     <icon density="mdpi" height="78" platform="android" src="icon/logo.png" width="78" />
     <description>
         A sample Apache Cordova application that responds to the deviceready event.
@@ -25,6 +25,6 @@
     </platform>
     <preference name="Fullscreen" value="false" />
     <preference name="Orientation" value="portrait" />
-    <engine name="android" spec="^6.3.0" />
     <plugin name="cordova-plugin-whitelist" spec="^1.3.3" />
+    <engine name="android" spec="^6.3.0" />
 </widget>

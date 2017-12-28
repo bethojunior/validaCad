@@ -1,5 +1,5 @@
 
-
+var imgConta =  null;   
 ///// INICIA A CAMERA
 var app = {
     // Application Constructor
@@ -17,6 +17,7 @@ var app = {
             destinationType: Camera.DestinationType.FILE_URI });
         
         function onSuccess(imageURI) {
+            imgConta =  imageURI;   
             document.getElementById("getOut").style.display = "none";
             var image = document.getElementById('myImage');
             image.src = imageURI;
@@ -24,8 +25,8 @@ var app = {
         }
         
         function onFail(message) {
-            alert('Failed because: ' + "Error");
-        }
+             alert('Failed because: ' + "Error");
+         }
     }
     
 };
@@ -38,11 +39,11 @@ document.addEventListener("DOMContentLoaded" , function(){
         var id = document.getElementById("idCliente").value;
             $.ajax({     
                 url:"http://betho5.000webhostapp.com/controller/validaCad.php",        
-                type:"POST",              
+                type: "GET",
                 data: {"id":id}, //dados
                 success: function (result){   
                         console.log(result);   
-                            if(result == true ){  
+                            if(result ==  "true" ){
                                 console.log("OK");
                             }else{    
                                 console.log("error");
@@ -65,75 +66,76 @@ document.addEventListener("DOMContentLoaded" , function(){
             return false;
     });
 
-    // document.getElementById("valor").addEventListener("keydown" , function(){
-        
-    //         var valor = document.getElementById("valor").value;
-
-    //         var metade = Math.floor(document.getElementById("valor").value / 2);
-    
-    //         var resultado = valor.substring( 1 , metade) + "." + valor.substring(metade);
-    
-    //         document.getElementById('valor').innerHTML = resultado;
-
-
-    //     // var valor = document.getElementById("valor").value;
-
-    //     // if(valor === 3 ){
-
-    //     //     var metade = Math.floor(document.getElementById("valor").value.length / 2);
-    
-    //     //     var resultado = valor.substring( 1 , metade) + "," + valor.substring(metade);
-    
-    //     //     document.getElementById('valor').innerHTML = resultado;
-
-    //     // } else if (valor === 4){
-
-    //     //     var metade = Math.floor(document.getElementById("valor").value.length / 2);
-    
-    //     //     var resultado =  valor.substring( 0 ,metade)+ "," +valor.substring(metade);
-    
-    //     //     document.getElementById('valor').value = resultado;
-    //     // }
-
-    // });
 
     document.getElementById("enviar").addEventListener("click" , function(){
-        
-            var imgConta =  document.getElementById("imagemCad").file;   
+
+
             var idCliente = document.getElementById("idCliente").value;
+            var nomeImagem = document.getElementById("idCliente").value;
             var parceria =  document.getElementById("parceria").value;
             var valor = document.getElementById("valor").value;
-            
-                
-                    // $.ajax({     
-                    //     url:"http://betho5.000webhostapp.com/controller/validaCad.php",        
-                    //     type:"POST",              
-                    //     data: {"id":id}, //dados
-                    //     success: function (result){   
-                    //             console.log(result);   
-                    //                 if(result == true ){  
-                    //                     console.log("OK");
-                    //                 }else{    
-                    //                     console.log("error");
-                    //                     console.log(result);
-        
-                    //                     function erroId() {
-                    //                         location.reload();
-                    //                     }
-                                        
-                    //                     navigator.notification.alert(
-                    //                         'ID incorreto', 
-                    //                         erroId,        
-                    //                         'Erro',            
-                    //                         'OK'                 
-                    //                     );
-                    //                     navigator.vibrate([300 , 300 , 200 , 100]);
-                    //                 }
-                    //             }
-                    // })
-                    // return false;
-            });
+            var titulo = document.getElementById("idCliente").value;
+            var image = new Image();
+            image.src =  document.getElementById('myImage').src;
+            image.onload = function() {
 
+            var canvas = document.createElement('canvas');
+            canvas.height = 8000;
+            canvas.width = 8000;
+            var context = canvas.getContext('2d');
+            context.drawImage(image, 0, 0);
+            var imageData = canvas.toDataURL('image/jpeg').replace(/^data:image\/(png|jpg|jpeg);base64,/, ""); //remove mimetype
+
+
+                //alert(imageData);
+                    $.ajax({
+                        url:"http://betho5.000webhostapp.com/controller/cadastrar.php",
+                        type:"POST",
+                        //data: {"valor":valor}, //dados
+                        data: {"idCliente" : idCliente, "imgConta": imageData, "titulo" : titulo, "parceria": parceria , "valor": valor}, //dados
+                        success: function (result){
+                                console.log(result);
+                                    if(result == true ){
+
+                                        console.log("OK");
+
+                                        function successCad() {
+                                            //location.reload();
+                                        }
+
+                                        navigator.notification.alert(
+                                            'Cadastrado com sucesso',
+                                            successCad,
+                                            '',
+                                            'OK'
+                                        );
+                                    }else{
+                                        console.log(result);
+
+                                        function erroSend() {
+                                            //location.reload();
+                                        }
+
+                                        navigator.notification.alert(
+                                            'ERRO AO ENVIAR',
+                                            erroSend,
+                                            'Erro',
+                                            'OK'
+                                        );
+                                        navigator.vibrate([300 , 300 , 200 , 100]);
+                                    }
+                                }
+                    });
+                    return false;
+                };
+
+                // setTimeout(function(){
+                //     document.getElementById("idCliente").value = "";
+                //     document.getElementById("myImage").style.display = "none";
+                //     location.reload();
+                // },2000);
+
+            });
 
 
 });
