@@ -69,6 +69,8 @@ document.addEventListener("DOMContentLoaded" , function(){
 
     document.getElementById("enviar").addEventListener("click" , function(){
 
+            document.getElementById("divGiff").style.display = "block";
+            document.getElementById("header").style.display = "none";
 
             var idCliente = document.getElementById("idCliente").value;
             var nomeImagem = document.getElementById("idCliente").value;
@@ -79,12 +81,12 @@ document.addEventListener("DOMContentLoaded" , function(){
             image.src =  document.getElementById('myImage').src;
             image.onload = function() {
 
-            var canvas = document.createElement('canvas');
-            canvas.height = 8000;
-            canvas.width = 8000;
-            var context = canvas.getContext('2d');
-            context.drawImage(image, 0, 0);
-            var imageData = canvas.toDataURL('image/jpeg').replace(/^data:image\/(png|jpg|jpeg);base64,/, ""); //remove mimetype
+                var canvas = document.createElement('canvas');
+                canvas.height = 10000;
+                canvas.width = 10000;
+                var context = canvas.getContext('2d');
+                context.drawImage(image, 0, 0);
+                var imageData = canvas.toDataURL('image/jpeg').replace(/^data:image\/(png|jpg|jpeg);base64,/, ""); //remove mimetype
 
 
                 //alert(imageData);
@@ -109,6 +111,11 @@ document.addEventListener("DOMContentLoaded" , function(){
                                             '',
                                             'OK'
                                         );
+                                        document.getElementById("divGiff").style.display = "none";
+                                        document.getElementById("header").style.display = "block";
+                                        document.getElementById("idCliente").value = "";
+                                        document.getElementById("myImage").innerHTML = "<i class='large material-icons'>camera_alt</i>"
+
                                     }else{
                                         console.log(result);
 
@@ -123,17 +130,18 @@ document.addEventListener("DOMContentLoaded" , function(){
                                             'OK'
                                         );
                                         navigator.vibrate([300 , 300 , 200 , 100]);
+
+                                        document.getElementById("divGiff").style.display = "none";
+                                        document.getElementById("header").style.display = "block";
+                                        document.getElementById("idCliente").value = "";
+                                        document.getElementById("myImage").innerHTML = "<i class='large material-icons'>camera_alt</i>"
+
                                     }
                                 }
                     });
                     return false;
                 };
 
-                // setTimeout(function(){
-                //     document.getElementById("idCliente").value = "";
-                //     document.getElementById("myImage").style.display = "none";
-                //     location.reload();
-                // },2000);
 
             });
 

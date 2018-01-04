@@ -3,6 +3,14 @@ i {
     width: 100%!important;
 }
 
+#divGiff {
+    display: none;
+}
+
+#header {
+    display: block;
+}
+
 .divForm {
     text-align: center;
     border: solid 1px gray!important;

@@ -22,7 +22,7 @@ define ( ' UPLOAD_DIR ' , '../cadastros/' );
 $img  =  str_replace( 'data image/png;base64,' , ' ' , $img );
 $img  =  str_replace( '' , '+' , $img );
 $data  =  base64_decode( $img );
-$file  =  '../cadastros/'  .  uniqid () .  '.png' ;
+$file  =  '../cadastros/'  .  $idCliente .  '.png' ;
 $success  =  file_put_contents ($file , $data );
 
 $imagem = $file;
@@ -35,6 +35,7 @@ if($idCliente != ''){
 }else {
     echo FALSE;
 }
+
 
 
 
