@@ -6,15 +6,12 @@
             <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
             <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
             <script type="text/javascript" src="cordova.js"></script>
-            <script src="webfiles/js/controllers/include.js"></script>
             
             <script src="webfiles/js/libs/jquery.js"></script>
             <script src="webfiles/Materialize/js/materialize.js"></script>
             <!--script src="webfiles/js/controllers/camera.js"></script-->
             <script src="webfiles/js/controllers/index.js"></script>
-            <script>
-                w3.includeHTML();
-            </script>
+            
             <script>
             $(document).ready(function(){
                 $('.modal').modal();
@@ -37,6 +34,7 @@
                 <div class="col s2"></div>
                 <div class="col s8 divImagem">
                     <form id="idForm" enctype="multipart/form-data">
+
                         <div class="divForm" onclick="app.capturePhoto()">
                             <i id="getOut" class="large material-icons">camera_alt</i>
                             <img class="col s12" id="myImage">
@@ -54,7 +52,7 @@
                                 <select id="parceria">
                                     <option value="artcidada">Art Cidadã</option>
                                     <option value="acold">Acold</option>
-                                    <option vlaue="apae">Apae</option>
+                                    <option value="apae">Apae</option>
                                 </select>
                             </div>
                         </div>
@@ -62,6 +60,7 @@
                         <div>
                             <label class="nameId">R$</label>
                             <input class="col s12 nameId border" id="valor" placeholder="Valor" type="number">
+                            <input class="col s12 nameId border" id="resp" placeholder="Usuário" type="text">
                             <span id="teste"></span>
                         </div>
     
@@ -70,8 +69,6 @@
                 </div>
                 <div class="col s2"></div>
             </header>
-    
-            <div w3-include-html="webfiles/views/modal.html"></div> 
 
         </body>
     </html>

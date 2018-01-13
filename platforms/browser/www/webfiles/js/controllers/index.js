@@ -33,7 +33,48 @@ var app = {
 
 
 document.addEventListener("DOMContentLoaded" , function(){
-    ///VALIDAÇÃO ID
+
+    ////////////////////////LOGIN 
+    if(document.getElementById("btnLogar")!=null){
+        document.getElementById("btnLogar").addEventListener("click" , function(){
+            var login = document.getElementById("login").value;
+            var pass = document.getElementById("pass").value;
+            
+            $.ajax({     
+                url:"http://betho5.000webhostapp.com/controller/validaLogin.php",        
+                type: "POST",
+                data: {"login":login , "pass":pass}, //dados
+                success: function (result){   
+                        console.log(result);   
+                            if(result !=  "false" ){
+                                //console.log(result);
+                                window.location.href='cad.html';
+                                document.getElementById("resp").value = "result";
+                                
+                            }else{    
+                                console.log("error");
+                                console.log(result);
+
+                                function erroId() {
+                                    location.reload();
+                                }
+                                
+                                navigator.notification.alert(
+                                    'Usuário incorreto', 
+                                    erroId,        
+                                    'Erro',            
+                                    'OK'                 
+                                );
+                                navigator.vibrate([300 , 300 , 200 , 100]);
+                            }
+                        }
+            })
+            return false;
+
+        });
+    }
+
+    ////////////////////////////////VALIDAÇÃO ID
     document.getElementById("idCliente").addEventListener("change" , function(){
 
         var id = document.getElementById("idCliente").value;
@@ -77,6 +118,7 @@ document.addEventListener("DOMContentLoaded" , function(){
             var parceria =  document.getElementById("parceria").value;
             var valor = document.getElementById("valor").value;
             var titulo = document.getElementById("idCliente").value;
+            var resp = document.getElementById("resp").value;
             var image = new Image();
             image.src =  document.getElementById('myImage').src;
             image.onload = function() {
@@ -94,7 +136,7 @@ document.addEventListener("DOMContentLoaded" , function(){
                         url:"http://betho5.000webhostapp.com/controller/cadastrar.php",
                         type:"POST",
                         //data: {"valor":valor}, //dados
-                        data: {"idCliente" : idCliente, "imgConta": imageData, "titulo" : titulo, "parceria": parceria , "valor": valor}, //dados
+                        data: {"idCliente" : idCliente, "imgConta": imageData, "titulo" : titulo, "parceria": parceria , "valor": valor , "resp": resp}, //dados
                         success: function (result){
                                 console.log(result);
                                     if(result == true ){
@@ -111,6 +153,7 @@ document.addEventListener("DOMContentLoaded" , function(){
                                             '',
                                             'OK'
                                         );
+                                        
                                         document.getElementById("divGiff").style.display = "none";
                                         document.getElementById("header").style.display = "block";
                                         document.getElementById("idCliente").value = "";
@@ -134,8 +177,8 @@ document.addEventListener("DOMContentLoaded" , function(){
                                         document.getElementById("divGiff").style.display = "none";
                                         document.getElementById("header").style.display = "block";
                                         document.getElementById("idCliente").value = "";
-                                        document.getElementById("myImage").innerHTML = "<i class='large material-icons'>camera_alt</i>"
-
+                                        document.getElementById("myImage").innerHTML = "<i class='large material-icons'>camera_alt</i>";
+                                        
                                     }
                                 }
                     });
