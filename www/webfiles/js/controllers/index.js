@@ -177,7 +177,7 @@ document.addEventListener("DOMContentLoaded" , function(){
                                         document.getElementById("divGiff").style.display = "none";
                                         document.getElementById("header").style.display = "block";
                                         document.getElementById("idCliente").value = "";
-                                        document.getElementById("myImage").innerHTML = "<i class='large material-icons'>camera_alt</i>";
+                                        document.getElementById("myImage").style.display = "none";
                                         
                                     }
                                 }
